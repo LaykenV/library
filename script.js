@@ -12,7 +12,7 @@ function addBook(Book) {
 }
 
 const Eragon = new newBook("Eragon", "Christopher Paolini", 544, "true");
-const Eldest = new newBook("Eldest", "Christopher Paolini", 755, "false");
+const Eldest = new newBook("Eldest", "Christopher Paolini", 755, "true");
 const LOTR = new newBook("LOTR", "J.R.R. Tolkien", 2901, "false");
 addBook(Eragon);
 addBook(Eldest);
@@ -35,17 +35,12 @@ function loopThrough() {
     newAuthor.innerHTML = `Author: ${myLibrary[i].author}`;
     newPages.textContent = `Pages: ${myLibrary[i].pages}`;
     console.log(myLibrary[i].read);
-    if (myLibrary[i].read === "true") {
-        newRead.textContent = "Have Read"; 
-    }
-    else if (myLibrary[i].read === "false") {
-        newRead.textContent = "Have Not Read"; 
+    if (myLibrary[i].read === "false") {
         newRead.classList.add("notread");
-        newRead.addEventListener("click", function() {
-            newRead.classList.remove("notread")
-            newRead.textContent = "Have Read";
-        })
     }
+    newRead.addEventListener("click", function() {
+        newRead.classList.toggle("notread");
+    })
     delBtn.addEventListener("click", function() {
         console.log(myLibrary[delBtn]);
         myLibrary.splice(myLibrary[i], 1);
