@@ -14,12 +14,12 @@ function addBook(Book) {
     myLibrary.push(Book);
 }
 
-const Eragon = new newBook("Eragon", "Christopher Paolini", 544, "true");
-const Eldest = new newBook("Eldest", "Christopher Paolini", 755, "true");
-const LOTR = new newBook("LOTR", "J.R.R. Tolkien", 2901, "false");
-addBook(Eragon);
-addBook(Eldest);
-addBook(LOTR);
+//const Eragon = new newBook("Eragon", "Christopher Paolini", 544, "true");
+//const Eldest = new newBook("Eldest", "Christopher Paolini", 755, "true");
+//const LOTR = new newBook("LOTR", "J.R.R. Tolkien", 2901, "false");
+//addBook(Eragon);
+//addBook(Eldest);
+//addBook(LOTR);
 
 let books = document.querySelector(".books");
 
@@ -50,6 +50,7 @@ function loopThrough() {
         for(i = 0; i < myLibrary.length + 1; i++) {
         books.removeChild(books.lastChild);}
         loopThrough();
+        setLocal();
     })
     newDiv.appendChild(newName);
     newDiv.appendChild(newAuthor);
@@ -89,6 +90,22 @@ newSubmit.addEventListener("click", function() {
     for(i = 0; i < myLibrary.length - 1; i++) {
       books.removeChild(books.lastChild);}
     loopThrough();
+    setLocal();
     popup.style.display = "none";
 })
 
+function setLocal() {
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+};
+
+function restoreLocal() {
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+    if (myLibrary == null) {
+        myLibrary = [];
+    }
+    else {
+        loopThrough();
+    }
+}
+
+restoreLocal();
