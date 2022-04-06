@@ -76,22 +76,32 @@ let newSubmit = document.querySelector("#submit");
 let newTitle = document.querySelector("#title");
 let newAuthor = document.querySelector("#author");
 let newPages = document.querySelector("#pages");
-let newRead = document.querySelector("#read");
+let newRead = document.querySelector('input[name="read"]:checked');
+let newForm = document.querySelector("#form");
+let formV = document.querySelector("#formv");
 
 newSubmit.addEventListener("click", function() {
-    titleInput = newTitle.value;
-    authorInput = newAuthor.value;
-    pagesInput = newPages.value;
-    readInput = newRead.value;
-    console.log(titleInput, authorInput, pagesInput, readInput);
-    let formBook = new newBook(titleInput, authorInput, pagesInput, readInput);
-    addBook(formBook);
-    console.log(myLibrary);
-    for(i = 0; i < myLibrary.length - 1; i++) {
-      books.removeChild(books.lastChild);}
-    loopThrough();
-    setLocal();
-    popup.style.display = "none";
+    if (newForm.checkValidity()) {
+        let newRead = document.querySelector('input[name="read"]:checked');
+        console.log(newRead);
+        formV.style.display = "none";
+        let  titleInput = newTitle.value;
+        let authorInput = newAuthor.value;
+        let pagesInput = newPages.value;
+        let readInput = newRead.value;
+        console.log(titleInput, authorInput, pagesInput, readInput);
+        let formBook = new newBook(titleInput, authorInput, pagesInput, readInput);
+        addBook(formBook);
+        console.log(myLibrary);
+        for(i = 0; i < myLibrary.length - 1; i++) {
+            books.removeChild(books.lastChild);}
+            loopThrough();
+            setLocal();
+            popup.style.display = "none";
+        }
+    else if (!newForm.checkValidity()) {
+        formV.style.display = "flex";
+    }
 })
 
 function setLocal() {

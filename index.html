@@ -34,18 +34,18 @@
                 <input type="number"
                     id="pages"
                     name="pages"
-                    placeholder="Pages"
-                    required>
-                <label for="read">
-                    <input type="radio" id="read" name="read" value="false">
+                    placeholder="Pages" required>
+                <label for="read" id="readornot">
+                    <input type="radio" id="haveread" name="read" value="true">
                     I have read this book.
                 </label>
                 <label for="read">
-                    <input type="radio" id="read" name="read" value="false">
+                    <input type="radio" id="haventread" name="read" value="false">
                     I haven't read this book.
                 </label>
                 <button type="button" value="submit" id="submit">Submit</button>
             </form>
+            <span id="formv">Please fill all spaces before submitting.</span>
         </div>
     </section>
 
